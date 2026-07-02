@@ -26,4 +26,24 @@ export class UserService {
     }
     return user;
   }
+
+  createUser(userData: Omit<User, 'id'>) {
+    const newUser = {
+      id: this.users.length + 1,
+      ...userData,
+    };
+    this.users.push(newUser);
+    return newUser;
+  }
+
+  deleteUser(id: number) {
+    const user = this.users.find((user) => user.id === id);
+
+    if (!user) {
+      throw new NotFoundException(`User with id ${id} not found`);
+    }
+    this.users = this.users.filter((user) => user.id !== id);
+
+    return user;
+  }
 }

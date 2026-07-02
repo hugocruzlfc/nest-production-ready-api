@@ -1,0 +1,16 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "ignorePatterns": [
+    "dist/**",
+    "coverage/**",
+    "vendor/**",
+    "test/snapshots/**"
+  ],
+  "categories": {
+    "correctness": "warn"
+  },
+  "jsPlugins": ["eslint-plugin-prettier"],
+  "rules": {
+    "eslint/no-unused-vars": "error"
+  }
+}

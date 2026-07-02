@@ -1,7 +1,18 @@
-import { Body, Controller, Get, Param, Post, Put, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserService } from './user.service';
+import { RoleGuard } from 'src/guards/role.guard';
 
 // @Get('all')    // GET /user/all
 // @Get(':id')    // GET /user/:id. ------dynamic segment
@@ -12,6 +23,7 @@ import { UserService } from './user.service';
 // rutas staticas primero q las dinamicas
 
 @Controller('user')
+// @UseGuards(RoleGuard)
 export class UserController {
   constructor(private userService: UserService) {}
   // @Query:
@@ -44,7 +56,9 @@ export class UserController {
   // @Body:
   @Post()
   createUser(@Body() createUserDto: CreateUserDto) {
-    return { data: createUserDto, message: 'User created successfully' };
+    const newUser = this.userService.createUser(createUserDto);
+
+    return { data: newUser, message: 'User created successfully' };
   }
 
   @Put(':id')
@@ -56,5 +70,13 @@ export class UserController {
       },
       message: 'User updated successfully',
     };
+  }
+
+  @Delete(':id')
+  @UseGuards(RoleGuard)
+  removeUser(@Param('id') id: string): unknown {
+    const deletedUser = this.userService.deleteUser(Number(id));
+
+    return { data: deletedUser, message: 'User deleted successfully' };
   }
 }
