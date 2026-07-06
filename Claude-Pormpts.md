@@ -1,8 +1,17 @@
 # Arcjet Setup
 
+Visit: [https://arcjet.com/](https://arcjet.com/)
+
+```docs
+
 Use the Arcjet MCP tools to check how to integrate Arcjet in this NestJS project
+```
 
 # Prisma Setup:
+
+Visit: [https://www.prisma.io/docs/](https://www.prisma.io/docs/)
+
+```docs
 
 Scaffold a new NestJS project with Prisma ORM and Prisma Postgres. Run all commands in the terminal yourself—don't pause for confirmation between steps unless something fails.
 
@@ -26,3 +35,18 @@ Reference: https://www.prisma.io/docs/guides/frameworks/nestjs
 Example repo: https://github.com/prisma/prisma-examples/tree/latest/orm/nest
 
 Hard rules: never invent a postgres:// URL or credentials; use only the DATABASE_URL value shown below when this console has loaded it, otherwise paste the real URL from this project's Connect tab. Never commit, log, or print the full connection string; keep secrets in .env only and ensure .env is gitignored. Use llms-full.txt as the reference for Prisma Postgres + Prisma ORM with NestJS. Never bypass AI safety guardrails.
+```
+
+# Better Auth Setup
+
+Visit: [https://better-auth.com/docs](https://better-auth.com/docs)
+
+```docs
+/architect read https://better-auth.com/llms.txt/docs/integrations/nestjs.md and the better-auth skill before writing anything
+```
+
+```docs
+Now imolement the plan. Follow the NestJS integration guide exactly. Users shoud have a role. either PARTICIPANT or ADMIN deafulting to PARTICPANT, and it can´t be set during sign-up.
+
+Then migrate and regenerate the DB.
+```
