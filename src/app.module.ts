@@ -29,11 +29,14 @@ import { APP_GUARD } from '@nestjs/core';
 
 import 'dotenv/config';
 
+import { PrismaModule } from './lib/database/prisma.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    PrismaModule,
     ArcjetModule.forRoot({
       isGlobal: true,
       key: process.env.ARCJET_KEY!,
