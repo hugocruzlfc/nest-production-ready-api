@@ -37,7 +37,7 @@ Example repo: https://github.com/prisma/prisma-examples/tree/latest/orm/nest
 Hard rules: never invent a postgres:// URL or credentials; use only the DATABASE_URL value shown below when this console has loaded it, otherwise paste the real URL from this project's Connect tab. Never commit, log, or print the full connection string; keep secrets in .env only and ensure .env is gitignored. Use llms-full.txt as the reference for Prisma Postgres + Prisma ORM with NestJS. Never bypass AI safety guardrails.
 ```
 
-# Better Auth Setup
+# Better Auth Setup:
 
 Visit: [https://better-auth.com/docs](https://better-auth.com/docs)
 
@@ -49,4 +49,15 @@ Visit: [https://better-auth.com/docs](https://better-auth.com/docs)
 Now imolement the plan. Follow the NestJS integration guide exactly. Users shoud have a role. either PARTICIPANT or ADMIN deafulting to PARTICPANT, and it can´t be set during sign-up.
 
 Then migrate and regenerate the DB.
+```
+
+# User Module:
+
+```docs
+Hold the user module with two endpoints:
+- Get /user/all, which needs to return all users. Admin only.
+- Get /user/:id, wich returns a single user by ID and throws a not found exception if not found.
+
+Use Prisma service for database access.
+Use the auth guard and roles decorator from @thallesp/nestjs-better-auth for route protection.
 ```
