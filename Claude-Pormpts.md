@@ -1,3 +1,7 @@
+# Arcjet Setup
+
+Use the Arcjet MCP tools to check how to integrate Arcjet in this NestJS project
+
 # Prisma Setup:
 
 Scaffold a new NestJS project with Prisma ORM and Prisma Postgres. Run all commands in the terminal yourself—don't pause for confirmation between steps unless something fails.
