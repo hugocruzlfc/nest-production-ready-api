@@ -32,6 +32,7 @@ import 'dotenv/config';
 
 import { auth } from './lib/auth/auth';
 import { PrismaModule } from './lib/database/prisma.module';
+import { UserModule } from './module/user/user.module';
 
 @Module({
   imports: [
@@ -42,6 +43,7 @@ import { PrismaModule } from './lib/database/prisma.module';
     AuthModule.forRoot({
       auth,
     }),
+    UserModule,
     ArcjetModule.forRoot({
       isGlobal: true,
       key: process.env.ARCJET_KEY!,
