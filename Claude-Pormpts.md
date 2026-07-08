@@ -83,3 +83,32 @@ Challenge Participant tracks which user joined which Challenge with a unique con
 
 Then run db:format, db:migrate, db:generate
 ```
+
+# Add Validator Pipe:
+
+```docs
+Install class-validator and class-transformer.
+Set up the global ValidationPipe in main.ts that returns a clean validation errors as an array of {property, message} objects using BadRequestException.
+```
+
+# Challenge Dto:
+
+```docs
+Create a ChallengeDto with:
+
+name (min 3 chars), optional description (min 10, max 1000), startsAt and endsAt as future dates, and optional isActive boolean.
+
+Use @Type(() => Date) to transform date strings.
+```
+
+# Create Challenge CRUD:
+
+```docs
+Build the Challenge CRUD service and controller.
+
+Admins can create, update, and delete, and everyone else can read.
+
+Pass the logged-in user's ID as author ID when creating
+
+Use auth-guard and roles from the nestjs-better-auth package.Add a response message on write operations.
+```

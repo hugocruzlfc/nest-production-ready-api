@@ -31,6 +31,7 @@ import { AuthModule } from '@thallesp/nestjs-better-auth';
 import { auth } from './lib/auth/auth';
 import { PrismaModule } from './lib/database/prisma.module';
 import { UserModule } from './module/user/user.module';
+import { ChallengeModule } from './module/challenge/challenge.module';
 
 @Module({
   imports: [
@@ -41,7 +42,6 @@ import { UserModule } from './module/user/user.module';
     AuthModule.forRoot({
       auth,
     }),
-    UserModule,
     ArcjetModule.forRoot({
       isGlobal: true,
       key: process.env.ARCJET_KEY!,
@@ -68,6 +68,8 @@ import { UserModule } from './module/user/user.module';
         }),
       ],
     }),
+    UserModule,
+    ChallengeModule,
   ],
   controllers: [],
   providers: [
