@@ -71,3 +71,15 @@ Support a @ResponseMessage decorator for custom messages, defaulting to “Succe
 
 Wire it globally in main.ts.
 ```
+
+# Challenge:
+
+```docs
+Create a Challenge and ChallengeParticipant Prisma schema.
+
+Challenge has name, optional description, start/end dates, isActive, and belongs to a User author.
+
+Challenge Participant tracks which user joined which Challenge with a unique constraint on ChallengeId + userId.
+
+Then run db:format, db:migrate, db:generate
+```

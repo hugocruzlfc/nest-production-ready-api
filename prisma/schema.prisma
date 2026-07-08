@@ -19,16 +19,18 @@ enum Role {
 }
 
 model User {
-  id            String    @id
+  id            String                 @id
   name          String
   email         String
-  emailVerified Boolean   @default(false)
+  emailVerified Boolean                @default(false)
   image         String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  role          Role      @default(PARTICIPANT)
+  createdAt     DateTime               @default(now())
+  updatedAt     DateTime               @updatedAt
+  role          Role                   @default(PARTICIPANT)
   sessions      Session[]
   accounts      Account[]
+  challenges    Challenge[]
+  participants  ChallengeParticipant[]
 
   @@unique([email])
   @@map("user")
@@ -80,4 +82,35 @@ model Verification {
 
   @@index([identifier])
   @@map("verification")
+}
+
+model Challenge {
+  id           String                 @id @default(cuid())
+  name         String
+  description  String?
+  startDate    DateTime
+  endDate      DateTime
+  isActive     Boolean                @default(true)
+  createdAt    DateTime               @default(now())
+  updatedAt    DateTime               @updatedAt
+  authorId     String
+  author       User                   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  participants ChallengeParticipant[]
+
+  @@index([authorId])
+  @@map("challenge")
+}
+
+model ChallengeParticipant {
+  id          String    @id @default(cuid())
+  challengeId String
+  challenge   Challenge @relation(fields: [challengeId], references: [id], onDelete: Cascade)
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@unique([challengeId, userId])
+  @@index([userId])
+  @@map("challenge_participant")
 }
