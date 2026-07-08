@@ -18,6 +18,11 @@ const envSchema = z.object({
     .enum(['development', 'production', 'test'])
     .default('development'),
   ARCJET_MODE: z.enum(['LIVE', 'DRY_RUN']).default('LIVE'),
+
+  LOG_LEVEL: z
+    .enum(['trace', 'debug', 'info', 'warn', 'error', 'fatal'])
+    .optional()
+    .or(z.literal('').transform(() => undefined)),
 });
 
 export type EnvironmentVariables = z.infer<typeof envSchema>;

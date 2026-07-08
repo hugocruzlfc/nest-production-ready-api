@@ -32,9 +32,11 @@ import appConfig from './config/app.config';
 import arcjetConfig from './config/arcjet.config';
 import authConfig from './config/auth.config';
 import databaseConfig from './config/database.config';
+import loggerConfig from './config/logger.config';
 import { validate } from './config/env.validation';
 import { auth } from './lib/auth/auth';
 import { PrismaModule } from './lib/database/prisma.module';
+import { LoggerModule } from './lib/logger/logger.module';
 import { UserModule } from './module/user/user.module';
 import { ChallengeModule } from './module/challenge/challenge.module';
 
@@ -43,7 +45,7 @@ import { ChallengeModule } from './module/challenge/challenge.module';
     ConfigModule.forRoot({
       isGlobal: true,
       cache: true,
-      load: [appConfig, databaseConfig, authConfig, arcjetConfig],
+      load: [appConfig, databaseConfig, authConfig, arcjetConfig, loggerConfig],
       validate,
     }),
     AuthModule.forRoot({
@@ -81,6 +83,7 @@ import { ChallengeModule } from './module/challenge/challenge.module';
     PrismaModule,
     UserModule,
     ChallengeModule,
+    LoggerModule,
   ],
   controllers: [],
   providers: [
