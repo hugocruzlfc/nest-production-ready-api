@@ -61,3 +61,13 @@ Hold the user module with two endpoints:
 Use Prisma service for database access.
 Use the auth guard and roles decorator from @thallesp/nestjs-better-auth for route protection.
 ```
+
+# Create interceptor:
+
+```docs
+Create a global response intereceptor that wraps every response in {stausCode, message, data}.
+
+Support a @ResponseMessage decorator for custom messages, defaulting to “Success”.
+
+Wire it globally in main.ts.
+```

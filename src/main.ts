@@ -1,5 +1,7 @@
-import { NestFactory } from '@nestjs/core';
+import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { TransformInterceptor } from './common/interceptors/transform.interceptor';
+import 'dotenv/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -7,9 +9,9 @@ async function bootstrap() {
     bodyParser: false,
   });
 
-  // app.useGlobalInterceptors(new TransformInterceptor());
+  app.useGlobalInterceptors(new TransformInterceptor(app.get(Reflector)));
   // app.useGlobalPipes(new ValidationPipe());
   // app.useGlobalGuards(new RoleGuard());
-  await app.listen(3000);
+  await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();

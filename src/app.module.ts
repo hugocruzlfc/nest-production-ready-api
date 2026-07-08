@@ -28,8 +28,6 @@ import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthModule } from '@thallesp/nestjs-better-auth';
 
-import 'dotenv/config';
-
 import { auth } from './lib/auth/auth';
 import { PrismaModule } from './lib/database/prisma.module';
 import { UserModule } from './module/user/user.module';
