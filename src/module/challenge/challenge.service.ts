@@ -1,8 +1,15 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 
+import { Prisma } from '../../generated/prisma/client';
 import { PrismaService } from '../../lib/database/prisma.service';
 import { ChallengeDto } from './dto/challenge.dto';
 import { UpdateChallengeDto } from './dto/update-challenge.dto';
+
+const UNIQUE_CONSTRAINT_VIOLATION = 'P2002';
 
 @Injectable()
 export class ChallengeService {
@@ -56,5 +63,32 @@ export class ChallengeService {
     await this.findOne(id);
 
     return this.prisma.challenge.delete({ where: { id } });
+  }
+
+  async join(challengeId: string, userId: string) {
+    const challenge = await this.findOne(challengeId);
+
+    if (!challenge.isActive) {
+      throw new BadRequestException('Challenge is not active');
+    }
+
+    if (challenge.endDate < new Date()) {
+      throw new BadRequestException('Challenge has already ended');
+    }
+
+    try {
+      return await this.prisma.challengeParticipant.create({
+        data: { challengeId, userId },
+      });
+    } catch (error) {
+      if (
+        error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === UNIQUE_CONSTRAINT_VIOLATION
+      ) {
+        throw new BadRequestException('Already joined this challenge');
+      }
+
+      throw error;
+    }
   }
 }

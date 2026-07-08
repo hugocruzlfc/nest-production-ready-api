@@ -112,3 +112,21 @@ Pass the logged-in user's ID as author ID when creating
 
 Use auth-guard and roles from the nestjs-better-auth package.Add a response message on write operations.
 ```
+
+# Create Challenge dat test:
+
+```docs
+Generate test JSON data based on the DTO
+```
+
+# Endpoint for Challenge Participants Join:
+
+```docs
+Add a POST /challenge/:id/join endpoint. Participant only.
+
+We want to check the challenge exists, that is active is set to true, and endsAt hasn't passed.
+
+Prevent duplicate joins using the unique constraint on challenge ID plus the user ID. Throw a bad request exception if already joined.
+
+Create the challenge Participant record and return it.
+```

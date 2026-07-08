@@ -53,4 +53,14 @@ export class ChallengeController {
   remove(@Param('id') id: string) {
     return this.challengeService.remove(id);
   }
+
+  @Post(':id/join')
+  @Roles(['PARTICIPANT'])
+  @ResponseMessage('Successfully joined challenge')
+  join(
+    @Param('id') id: string,
+    @Session() session: UserSession<typeof auth>,
+  ) {
+    return this.challengeService.join(id, session.user.id);
+  }
 }
