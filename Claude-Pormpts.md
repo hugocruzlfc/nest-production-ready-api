@@ -130,3 +130,13 @@ Prevent duplicate joins using the unique constraint on challenge ID plus the use
 
 Create the challenge Participant record and return it.
 ```
+
+# Migrate to NestConfig:
+
+```docs
+Migrate this project from scattered `process.env` settings to `@nestjs/config` as the single source of truth for configuration.
+
+- Validate environment variables at startup using `zod` (fail-fast, clear error).
+- Domain-typed configuration using `registerAs` (app, database, auth, arcjet, etc.), without magic strings, with autocomplete (`ConfigType<>` / `xConfig.KEY`).
+- Replace all `process.env` values except where it is technically impossible (code that runs before the Nest container exists, e.g., module-level builders for external libraries, or Prisma CLI configuration) — those cases
+```

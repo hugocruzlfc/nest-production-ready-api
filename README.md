@@ -25,6 +25,54 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Configuration
+
+All configuration is centralized through `@nestjs/config`. Environment variables
+are validated at startup with `zod` (`src/config/env.validation.ts`) — if a
+required variable is missing or invalid, the app fails immediately with a
+clear error instead of failing later inside a request.
+
+### Required environment variables
+
+| Variable             | Required | Default       | Notes                                       |
+| -------------------- | -------- | ------------- | ------------------------------------------- |
+| `NODE_ENV`           | no       | `development` | `development` \| `production` \| `test`     |
+| `PORT`               | no       | `3000`        | HTTP port                                   |
+| `DATABASE_URL`       | yes      | —             | PostgreSQL connection string                |
+| `BETTER_AUTH_SECRET` | yes      | —             | Min 32 characters                           |
+| `BETTER_AUTH_URL`    | yes      | —             | Base URL used by Better Auth                |
+| `ARCJET_KEY`         | yes      | —             | Arcjet site key                             |
+| `ARCJET_ENV`         | no       | `development` | Read directly by `@arcjet/env`, not the app |
+| `ARCJET_MODE`        | no       | `LIVE`        | `LIVE` \| `DRY_RUN`, read by `@arcjet/env`  |
+
+### Local development
+
+Copy `.env.example` to `.env` and fill in real values:
+
+```bash
+$ cp .env.example .env
+```
+
+### How validation works
+
+`ConfigModule.forRoot` (in `src/app.module.ts`) runs `validate()` from
+`src/config/env.validation.ts` against `process.env` on boot. Each domain
+(`app`, `database`, `auth`, `arcjet`) has its own typed `registerAs()` file in
+`src/config/`, injected via `ConfigService` or `@Inject(xConfig.KEY)` —
+no other file in the app reads `process.env` directly, with two documented
+exceptions: `src/lib/auth/auth.ts` and `prisma.config.ts`, which run before
+Nest's DI container exists.
+
+### Adding a new environment variable
+
+1. Add the field (with its `zod` rule) to `EnvironmentVariables` in
+   `src/config/env.validation.ts`.
+2. Expose it through the relevant `registerAs()` file in `src/config/`
+   (or add a new one for a new domain).
+3. Inject it via `ConfigService.get('<namespace>.<key>')` or
+   `@Inject(xConfig.KEY)` — never read `process.env` directly outside
+   `src/config/`.
+
 ## Project setup
 
 ```bash
@@ -96,6 +144,3 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
-
-https://www.youtube.com/watch?v=Q6NpiIp-6WM
-43
