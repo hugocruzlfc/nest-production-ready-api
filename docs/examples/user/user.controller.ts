@@ -12,7 +12,7 @@ import {
 import { CreateUserDto } from './dto/create-user.dto.js';
 import { UpdateUserDto } from './dto/update-user.dto.js';
 import { UserService } from './user.service.js';
-import { RoleGuard } from 'test/guards/role.guard.js';
+import { RoleGuard } from 'docs/examples/guards/role.guard.js';
 
 // @Get('all')    // GET /user/all
 // @Get(':id')    // GET /user/:id. ------dynamic segment
