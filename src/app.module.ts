@@ -1,21 +1,3 @@
-// import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-// import { AppController } from './app.controller';
-// import { AppService } from './app.service';
-// import { UserModule } from './user/user.module';
-// import { ApiKeyMiddleware } from './middleware/api-key.middleware';
-// import { UserController } from './user/user.controller';
-
-// @Module({
-//   imports: [UserModule],
-//   controllers: [AppController],
-//   providers: [AppService],
-// })
-// export class AppModule implements NestModule {
-//   configure(consumer: MiddlewareConsumer) {
-//     consumer.apply(ApiKeyMiddleware).forRoutes(UserController);
-//   }
-// }
-
 import {
   ArcjetGuard,
   ArcjetModule,
@@ -93,4 +75,9 @@ import { ChallengeModule } from './module/challenge/challenge.module';
     },
   ],
 })
-export class AppModule {}
+export class AppModule {
+  // ONlY for demonstration purposes, you can use middleware to protect your routes with an API key
+  //   configure(consumer: MiddlewareConsumer) {
+  //     consumer.apply(ApiKeyMiddleware).forRoutes(UserController);
+  //   }
+}

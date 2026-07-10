@@ -144,3 +144,33 @@ Add structured logging to the API with nestjs-pino (pino + pino-http):
 -Replace Nest’s internal logger in main.ts with pino’s (app.useLogger(...), with bufferLogs: true).
 -Verify at the end: pretty-printed logs in dev, JSON in prod, formatting working, and a unique req.id for each request—by running the actual app, not just compiling it.
 ```
+
+# Create tests:
+
+```docs
+ Write a scaffold a starting-point test suite for this project — NOT full coverage. One representative test file per source file below, each with just 1-2 test cases that prove the pattern works, not every branch. Follow CLAUDE.md
+conventions (constructor injection only, never `new PrismaClient()` / `new Service()`).
+
+Files to seed (one .spec.ts next to each, one key behavior each):
+1. src/module/challenge/challenge.service.ts
+   - join(): rejects if challenge.isActive is false
+2. src/module/user/user.service.ts
+   - findById(): throws NotFoundException if the user doesn't exist
+3. src/config/env.validation.ts
+   - validate(): throws if DATABASE_URL is missing
+4. src/common/pipes/validation-exception.factory.ts
+   - flattens a single flat validation error into {property, message}
+5. src/common/interceptors/transform.interceptor.ts
+   - wraps the response using the @ResponseMessage value when present
+
+Conventions:
+- Jest + @nestjs/testing, mock PrismaService as a flat object
+  ({ challenge: { findMany: jest.fn(), ... } }) — never touch the real DB
+- AAA style (Arrange-Act-Assert), no comments explaining the test
+- Skip e2e for now — unit seeds only
+- Leave a short TODO comment at the top of each spec file listing the other
+  cases still worth adding later (e.g. "TODO: also test endDate passed, P2002
+  duplicate join"), so the starting point is visible without writing them yet
+
+Don't touch docs/examples/user/user.service.spec.ts — it's a template, not a real test.
+```

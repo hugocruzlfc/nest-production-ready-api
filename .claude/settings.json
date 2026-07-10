@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(grep -v '^$')",
-      "Bash(pnpm add *)",
-      "Bash(pnpm run *)"
-    ]
-  }
-}
