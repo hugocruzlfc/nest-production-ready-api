@@ -1,0 +1,279 @@
+{
+  "info": {
+    "_postman_id": "f3d1014d-dcb2-47e4-a5da-294f88a4a558",
+    "name": "Nest-AI-PRO",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17174965"
+  },
+  "item": [
+    {
+      "name": "Register",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Origin",
+            "value": "http://localhost:3000",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\": \"Joshua Cruz\",\n    \"email\": \"jcruz@gmail.com\",\n    \"password\": \"joshua123\"\n    }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/auth/sign-up/email",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "auth",
+            "sign-up",
+            "email"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Origin",
+            "value": "http://localhost:3000",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"email\": \"hugocruzlfc@gmail.com\",\n    \"password\": \"EmmaCruz178\"\n    }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/auth/sign-in/email",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "auth",
+            "sign-in",
+            "email"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Users",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Origin",
+            "value": "http://localhost:3000",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "Cookie",
+            "value": "better-auth.session_token=PKVNMhYDALBj5cklFlezo5jBiVJowbFb.IYuNaKKHQgLE5REdbW%2B4BjWnF6bcOogHnJTkkilqWS0%3D; Max-Age=604800; Path=/; HttpOnly; SameSite=Lax",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/user/all",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "user",
+            "all"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get User by ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Cookie",
+            "value": "better-auth.session_token=PKVNMhYDALBj5cklFlezo5jBiVJowbFb.IYuNaKKHQgLE5REdbW%2B4BjWnF6bcOogHnJTkkilqWS0%3D; Max-Age=604800; Path=/; HttpOnly; SameSite=Lax",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/user/NrCrbbpuZ4c1F1PpkP828rYV6UhBfgqo",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "user",
+            "NrCrbbpuZ4c1F1PpkP828rYV6UhBfgqo"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create a Challenge",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Cookie",
+            "value": "better-auth.session_token=PKVNMhYDALBj5cklFlezo5jBiVJowbFb.IYuNaKKHQgLE5REdbW%2B4BjWnF6bcOogHnJTkkilqWS0%3D; Max-Age=604800; Path=/; HttpOnly; SameSite=Lax",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Summer Coding Sprint\",\n  \"description\": \"A two-week challenge for participants to build and ship a small project.\",\n  \"startsAt\": \"2026-08-01T09:00:00.000Z\",\n  \"endsAt\": \"2026-08-15T18:00:00.000Z\",\n  \"isActive\": true\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/challenge",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "challenge"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get all Challenges",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Cookie",
+            "value": "better-auth.session_token=PKVNMhYDALBj5cklFlezo5jBiVJowbFb.IYuNaKKHQgLE5REdbW%2B4BjWnF6bcOogHnJTkkilqWS0%3D; Max-Age=604800; Path=/; HttpOnly; SameSite=Lax",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Summer Coding Sprint\",\n  \"description\": \"A two-week challenge for participants to build and ship a small project.\",\n  \"startsAt\": \"2026-08-01T09:00:00.000Z\",\n  \"endsAt\": \"2026-08-15T18:00:00.000Z\",\n  \"isActive\": true\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/challenge",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "challenge"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Challenge by ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Cookie",
+            "value": "better-auth.session_token=PKVNMhYDALBj5cklFlezo5jBiVJowbFb.IYuNaKKHQgLE5REdbW%2B4BjWnF6bcOogHnJTkkilqWS0%3D; Max-Age=604800; Path=/; HttpOnly; SameSite=Lax",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/challenge/cmrc85tuc0000wyshjz6p4yq3",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "challenge",
+            "cmrc85tuc0000wyshjz6p4yq3"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User Participant join to challenge",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Cookie",
+            "value": "better-auth.session_token=xVxzGXKN79EgVQfzeemOxSQymI5gLGHW.KTqCoc6yLxXrA9xd8IpQxRCqzx9HzAHmE9xXMIWC%2BCs%3D; Max-Age=604800; Path=/; HttpOnly; SameSite=Lax",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/challenge/cmrc85tuc0000wyshjz6p4yq3/join",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "challenge",
+            "cmrc85tuc0000wyshjz6p4yq3",
+            "join"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
