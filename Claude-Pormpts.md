@@ -21,7 +21,7 @@ Also skim the stack-specific walkthrough: https://www.prisma.io/docs/guides/fram
 
 Step 2— Link Prisma Postgres (no browser auth).
 From the new project root (directory with package.json), run this exact command without echoing secrets:
-PRISMA_API_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RfaWQiOjEsInNlY3VyZV9rZXkiOiJza19TR3gtVWh3dmJxYjVrbjVrY3NrMGsiLCJhcGlfa2V5IjoiMDFLV1ZYSEdDQkhOWlhLQ01HS0Q3V1dFWDAiLCJ0ZW5hbnRfaWQiOiJkOGM1NWMwY2JkMWQwOGNjZDc1YzllMmJlYzcyYmExMzg4ZWZhNDM4YTA3MmE2Zjg4NmM2NjkwZGM5ZGJjNTg0IiwiaW50ZXJuYWxfc2VjcmV0IjoiYzIwZGEzM2QtOGNiZS00NDFjLTg1MjgtZDhhNTllMDY1YzM3In0.Qgl8YvfG_-qn0SfH-C6_QpTYejBnuZegAZqpkRbEDRQ" npx --yes --package=prisma@latest -- prisma postgres link --database "db_cmr9bg36606xrxef9uiudanvo"
+PRISMA_API_KEY="<your-prisma-api-key>" npx --yes --package=prisma@latest -- prisma postgres link --database "<your-db-resource-id>"
 This writes DATABASE_URL to .env. Add .env to .gitignore if missing. The database argument must use the db_ resource id form shown above.
 
 Step 4 — Apply migrations and generate Prisma Client:
